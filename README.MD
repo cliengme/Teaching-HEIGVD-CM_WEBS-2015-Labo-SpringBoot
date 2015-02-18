@@ -1,3 +1,7 @@
+Projet dans le cadre du cours Webservices par Emmanuel Bezençon et Cedric Liengme
+
+URL Heroku : not yet defined
+
 # Smart City - Citizen Engagement - Spring Boot Skeleton
 
 ## Introduction
