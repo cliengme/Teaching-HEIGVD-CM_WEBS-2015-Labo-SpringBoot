@@ -14,5 +14,6 @@ public class JerseyConfig extends ResourceConfig {
 		register(CityEngagementExceptionMapper.class);
 		register(DataResource.class);
 		register(UserResource.class);
+                register(IssueTypeResource.class);
 	}
 }

@@ -1,7 +1,7 @@
 package ch.heigvd.ptl.sc.converter;
 
-import ch.heigvd.ptl.sc.model.User;
-import ch.heigvd.ptl.sc.to.UserTO;
+import ch.heigvd.ptl.sc.model.IssueType;
+import ch.heigvd.ptl.sc.to.IssueTypeTO;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -9,59 +9,57 @@ import org.springframework.stereotype.Service;
 @Service
 public class IssueTypeConverter {
 	public final List<IssueTypeTO> convertSourceToTarget(List<IssueType> sources) {
-		List<UserTO> results = new ArrayList<>();
+		List<IssueTypeTO> results = new ArrayList<>();
 		
-		for (User source : sources) {
+		for (IssueType source : sources) {
 			results.add(convertSourceToTarget(source));
 		}
 		
 		return results;
 	}
 
-	public final UserTO convertSourceToTarget(User source) {
-		UserTO target = new UserTO();
+	public final IssueTypeTO convertSourceToTarget(IssueType source) {
+		IssueTypeTO target = new IssueTypeTO();
 		fillTargetFromSource(target, source);
 		return target;
 	}
 	
-	public final List<User> convertTargetToSource(List<UserTO> targets) {
-		List<User> results = new ArrayList<>();
+	public final List<IssueType> convertTargetToSource(List<IssueTypeTO> targets) {
+		List<IssueType> results = new ArrayList<>();
 		
-		for (UserTO target : targets) {
+		for (IssueTypeTO target : targets) {
 			results.add(convertTargetToSource(target));
 		}
 		
 		return results;
 	}
 
-	public final User convertTargetToSource(UserTO target) {
-		User source = new User();
+	public final IssueType convertTargetToSource(IssueTypeTO target) {
+		IssueType source = new IssueType();
 		fillSourceFromTarget(source, target);
 		return source;
 	}
 
-	public void fillTargetFromSource(UserTO target, User source) {
+	public void fillTargetFromSource(IssueTypeTO target, IssueType source) {
 		target.setId(source.getId());
-		target.setFirstname(source.getFirstname());
-		target.setLastname(source.getLastname());
-		target.setPhone(source.getPhone());
+		target.setShortname(source.getShortname());
+		target.setDescription(source.getDescription());
 		
-		List<String> roles = new ArrayList<>();
-		for (String role : source.getRoles()) {
-			roles.add(role);
-		}
-		target.setRoles(roles);
+//		List<String> roles = new ArrayList<>();
+//		for (String role : source.getRoles()) {
+//			roles.add(role);
+//		}
+//		target.setRoles(roles);
 	}
 
-	public void fillSourceFromTarget(User source, UserTO target) {
-		source.setFirstname(target.getFirstname());
-		source.setLastname(target.getLastname());
-		source.setPhone(target.getPhone());
+	public void fillSourceFromTarget(IssueType source, IssueTypeTO target) {
+		source.setShortname(target.getShortname());
+		source.setDescription(target.getDescription());
 
-		List<String> roles = new ArrayList<>();
-		for (String role : target.getRoles()) {
-			roles.add(role);
-		}
-		source.setRoles(roles);
+//		List<String> roles = new ArrayList<>();
+//		for (String role : target.getRoles()) {
+//			roles.add(role);
+//		}
+//		source.setRoles(roles);
 	}
 }
