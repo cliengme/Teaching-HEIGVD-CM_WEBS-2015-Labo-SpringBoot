@@ -3,6 +3,8 @@ package ch.heigvd.ptl.sc.rest;
 import ch.heigvd.ptl.sc.model.User;
 import ch.heigvd.ptl.sc.persistence.UserRepository;
 import ch.heigvd.ptl.sc.converter.UserConverter;
+import ch.heigvd.ptl.sc.model.IssueType;
+import ch.heigvd.ptl.sc.persistence.IssueTypeRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -79,7 +81,11 @@ public class DataResource {
 	@Autowired
 	private UserConverter userConverter;
 	
+        @Autowired
+        private IssueTypeRepository issueTypeRepository;
+        
 	private List<User> users = new ArrayList<>();
+	private List<IssueType> issueTypes = new ArrayList<>();
 	private List<User> citizen = new ArrayList<>();
 	private List<User> staff = new ArrayList<>();
 	
@@ -137,15 +143,40 @@ public class DataResource {
 			}
 		}
 	}
+        
+        private void populateIssueTypes() {
+            IssueType it1 = new IssueType();
+            IssueType it2 = new IssueType();
+            IssueType it3 = new IssueType();
+            
+            it1.setShortname("broken streetlight");
+            it1.setDescription("a streetlight is broken");
+            it2.setShortname("dangerous crossroad");
+            it2.setDescription("a crossroad is very dangerous");
+            it3.setShortname("graffiti");
+            it3.setDescription("another graffiti on a wall");
+            
+            it1 = issueTypeRepository.save(it1);
+            it2 = issueTypeRepository.save(it2);
+            it3 = issueTypeRepository.save(it3);
+            
+            issueTypes.add(it1);
+            issueTypes.add(it2);
+            issueTypes.add(it3);
+            
+            
+            
+        }
 	
 	@Path("/populate")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response populate() throws ParseException {
 		userRepository.deleteAll();
+		issueTypeRepository.deleteAll();
 
 		populateUsers();
-		
+		populateIssueTypes();
 		return Response.ok().build();
 	}
 }
