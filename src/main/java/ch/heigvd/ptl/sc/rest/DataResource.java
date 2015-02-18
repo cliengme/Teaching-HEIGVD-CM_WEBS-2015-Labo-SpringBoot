@@ -144,6 +144,9 @@ public class DataResource {
 		}
 	}
         
+        /**
+         * Methode pour peupler la bd.
+         */
         private void populateIssueTypes() {
             IssueType it1 = new IssueType();
             IssueType it2 = new IssueType();
