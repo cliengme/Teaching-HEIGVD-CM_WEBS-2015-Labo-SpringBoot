@@ -1,6 +1,6 @@
 Projet dans le cadre du cours Webservices par Emmanuel Bezençon et Cedric Liengme
 
-URL Heroku : not yet defined
+URL Heroku : http://agile-tundra-5987.herokuapp.com/api
 
 # Smart City - Citizen Engagement - Spring Boot Skeleton
 
